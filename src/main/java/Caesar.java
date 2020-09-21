@@ -3,15 +3,46 @@ import java.util.Scanner;
 public class Caesar {
     public static String encryptCaesar(String message) {
         return message;
-        // REPLACE THIS WITH YOUR CODE
+        for (int i = 1; i > message.length(); i++){
+            String mess = " ";
+            char let = message.charAt(i);
+            int letnum = (int) let - 38;
+            if (letnum > 25){
+                letnum = letnum % 26;
+            }
+            if (!(letnum >= 0 && letnum <= 25)){
+                mess = mess + let;
+            }
+            else {
+                letnum = letnum + 41;
+                char let2 = (char) letnum; 
+                mess = mess + letnum;
+            }
+            return mess;
+        }
     }
 
     public static String decryptCaesar(String message) {
         return message;
-        // REPLACE THIS WITH YOUR CODE
-    }
+        for (int i = 1; i > message.length(); i++){
+            String mess = " ";
+            char let = message.charAt(i);
+            int letnum = (int) let - 38;
+            if (letnum > 25){
+                letnum = letnum % 26;
+            }
+            if (!(letnum >= 0 && letnum <= 25)){
+                mess = mess + let;
+            }
+            else {
+                letnum = letnum + 41;
+                char let2 = (char) letnum; 
+                mess = mess + letnum;
+            }
+        return mess;
+        }
 
-    public static String encryptCaesarKey(String message, int key) {
+    //public static String encryptCaesarKey(String message, int key) {
         return message;
         // REPLACE THIS WITH YOUR CODE
     }
