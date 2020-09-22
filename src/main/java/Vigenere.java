@@ -26,56 +26,62 @@ public class Vigenere {
     public static String encryptVigenere(String message, String key) {
         String mess = "";
         int lenmess = message.length();
-        char key2 = (char) (key.charAt(lenmess % i)
         for (int i = 0; i < lenmess; i++){
             char let = message.charAt(i); 
-            char key2 = key.charAt(lenmess % i);
-            if (key2 >= 97 && key2 <= 122){
-                key2 = key2 - 97;
-            else{
-                key2 = key2 - 65;
+            char key2 = key.charAt(i % lenmass);
+            int key3 = Character.getNumericValue(key2);
+            if (key3 >= 97 && key3 <= 122){
+                key3 = key3 - 97;
             }
-           mess += encryptVigenereKey(let, key2);
+            else{
+                key3 = key3 - 65;
+            }
+            char key4 = (char) key3;
+            mess = mess + decryptVigenereKey(let, key4);
         }
         return mess;
     }
 
-    public static String decryptVigenereKey(String message, int key) {
-        String mess = "";
-        int lenmess = message.length();
-        int key2 = key % 26;
-        for (int i = 0; i < lenmess; i++){
-            char let = message.charAt(i);
-            if (let >= 97 && let <= 122){
-                int letnum = let - 97;
-                if (letnum > -1 && letnum < key2){
-                    letnum = letnum + 26;
-                }
-                letnum = letnum + (97 - key);
-                let = (char) letnum;
-                mess += let;
-                } 
-            else if (let >= 65 && let <= 90){
-                int letnum = let - 65;
-                if (letnum > -1 && letnum < key2){
-                    letnum = letnum + 26;
-                }
-                letnum = letnum + (65 - key2);
-                let = (char) letnum;
-                mess += let;
-                }
-            else{
-                mess = mess + let;
+    public static char decryptVigenereKey(char lett, char k) {
+        if (lett >= 97 && lett <= 122){
+            int letnum = lett - 97;
+            if (letnum > -1 && letnum < k){
+                letnum = letnum + 26;
             }
+            letnum = letnum + (97 - k);
+            lett = (char) letnum;
+        } 
+        else if (lett >= 65 && lett <= 90){
+            int letnum = lett - 65;
+            if (letnum > -1 && letnum < k){
+                letnum = letnum + 26;
+            }
+            letnum = letnum + (65 - k);
+            lett = (char) letnum;
         }
-        return mess;
+        else{
+        }
+        return lett;
     }
 
     public static String decryptVigenere(String message, String key) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        String mess = "";
+        int lenmess = message.length();
+        for (int i = 0; i < lenmess; i++){
+            char let = message.charAt(i); 
+            char key2 = key.charAt(i % lenmass);
+            int key3 = Character.getNumericValue(key2);
+            if (key3 >= 97 && key3 <= 122){
+                key3 = key3 - 97;
+            }
+            else{
+                key3 = key3 - 65;
+            }
+            char key4 = (char) key3;
+            mess = mess + decryptVigenereKey(let, key4);
+        }
+        return mess;
     }
-
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
