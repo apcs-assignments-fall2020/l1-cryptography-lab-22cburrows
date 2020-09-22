@@ -2,54 +2,124 @@ import java.util.Scanner;
 
 public class Caesar {
     public static String encryptCaesar(String message) {
-        return message;
-        for (int i = 1; i > message.length(); i++){
-            String mess = " ";
+        String mess = "";
+        int lenmess = message.length();
+        for (int i = 0; i < lenmess; i++){
             char let = message.charAt(i);
-            int letnum = (int) let - 38;
-            if (letnum > 25){
-                letnum = letnum % 26;
-            }
-            if (!(letnum >= 0 && letnum <= 25)){
+            if (let >= 97 && let <= 122){
+                int letnum = let - 94;
+                if (letnum > 25 && letnum < 29){
+                    letnum = letnum % 26;
+                }
+                int letnum2 = letnum + 97;
+                let = (char) letnum2;
+                mess += let;
+                } 
+            else if (let >= 65 && let <= 90){
+                int letnum = let - 62;
+                if (letnum > 25 && letnum < 29){
+                    letnum = letnum % 26;
+                }
+                int letnum3 = letnum + 65;
+                let = (char) letnum3;
+                mess += let;
+                }
+            else{
                 mess = mess + let;
             }
-            else {
-                letnum = letnum + 41;
-                char let2 = (char) letnum; 
-                mess = mess + letnum;
-            }
-            return mess;
         }
-    }
-
-    public static String decryptCaesar(String message) {
-        return message;
-        for (int i = 1; i > message.length(); i++){
-            String mess = " ";
-            char let = message.charAt(i);
-            int letnum = (int) let - 38;
-            if (letnum > 25){
-                letnum = letnum % 26;
-            }
-            if (!(letnum >= 0 && letnum <= 25)){
-                mess = mess + let;
-            }
-            else {
-                letnum = letnum + 41;
-                char let2 = (char) letnum; 
-                mess = mess + letnum;
-            }
         return mess;
         }
 
-    //public static String encryptCaesarKey(String message, int key) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+    public static String decryptCaesar(String message) {
+        String mess = "";
+        int lenmess = message.length();
+        for (int i = 0; i < lenmess; i++){
+            char let = message.charAt(i);
+            if (let >= 97 && let <= 122){
+                int letnum = let - 97;
+                if (letnum > -1 && letnum < 3){
+                    letnum = letnum + 26;
+                }
+                letnum = letnum + 94;
+                let = (char) letnum;
+                mess += let;
+                } 
+            else if (let >= 65 && let <= 90){
+                int letnum = let - 65;
+                if (letnum > -1 && letnum < 3){
+                    letnum = letnum + 26;
+                }
+                letnum = letnum + 62;
+                let = (char) letnum;
+                mess += let;
+                }
+            else{
+                mess = mess + let;
+            }
+        }
+        return mess;
+    }
+
+    public static String encryptCaesarKey(String message, int key) {
+        String mess = "";
+        int lenmess = message.length();
+        for (int i = 0; i < lenmess; i++){
+            char let = message.charAt(i);
+            if (let >= 97 && let <= 122){
+                int letnum = let - (97 - key);
+                if (letnum > 25 && letnum <= (25 + key)){
+                    letnum = letnum % 26;
+                }
+                int letnum2 = letnum + 97;
+                let = (char) letnum2;
+                mess += let;
+                } 
+            else if (let >= 65 && let <= 90){
+                int letnum = let - (65 - key);
+                if (letnum > 25 && letnum <= (25 + key)){
+                    letnum = letnum % 26;
+                }
+                int letnum3 = letnum + 65;
+                let = (char) letnum3;
+                mess += let;
+                }
+            else {
+                mess = mess + let;
+            }
+        }
+        return mess;
     }
 
     public static String decryptCaesarKey(String message, int key) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        String mess = "";
+        int lenmess = message.length();
+        int key2 = key % 26;
+        for (int i = 0; i < lenmess; i++){
+            char let = message.charAt(i);
+            if (let >= 97 && let <= 122){
+                int letnum = let - 97;
+                if (letnum > -1 && letnum < key2){
+                    letnum = letnum + 26;
+                }
+                letnum = letnum + (97 - key);
+                let = (char) letnum;
+                mess += let;
+                } 
+            else if (let >= 65 && let <= 90){
+                int letnum = let - 65;
+                if (letnum > -1 && letnum < key2){
+                    letnum = letnum + 26;
+                }
+                letnum = letnum + (65 - key2);
+                let = (char) letnum;
+                mess += let;
+                }
+            else{
+                mess = mess + let;
+            }
+        }
+        return mess;
     }
 
 
