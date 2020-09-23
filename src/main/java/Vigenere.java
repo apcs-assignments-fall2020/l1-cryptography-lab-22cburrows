@@ -26,9 +26,17 @@ public class Vigenere {
     public static String encryptVigenere(String message, String key) {
         String mess = "";
         int lenmess = message.length();
+        int lenkey = key.length();
         for (int i = 0; i < lenmess; i++){
+            int i2 = 0;
+            if (i > lenkey){
+                i2 = lenmess % lenkey;
+            }
+            else{
+                i2 = i;
+            }
             char let = message.charAt(i); 
-            char key2 = key.charAt(i % lenmass);
+            char key2 = key.charAt(i2);
             int key3 = Character.getNumericValue(key2);
             if (key3 >= 97 && key3 <= 122){
                 key3 = key3 - 97;
@@ -37,7 +45,8 @@ public class Vigenere {
                 key3 = key3 - 65;
             }
             char key4 = (char) key3;
-            mess = mess + decryptVigenereKey(let, key4);
+            System.out.println(key3);
+            mess = mess + encryptVigenereKey(let, key4);
         }
         return mess;
     }
@@ -67,9 +76,17 @@ public class Vigenere {
     public static String decryptVigenere(String message, String key) {
         String mess = "";
         int lenmess = message.length();
+        int lenkey = key.length();
         for (int i = 0; i < lenmess; i++){
+            int i2 = 0;
+            if (i > lenkey){
+                i2 = lenkey % lenmess;
+            }
+            else{
+                i2 = i;
+            }
             char let = message.charAt(i); 
-            char key2 = key.charAt(i % lenmass);
+            char key2 = key.charAt(i2);
             int key3 = Character.getNumericValue(key2);
             if (key3 >= 97 && key3 <= 122){
                 key3 = key3 - 97;
